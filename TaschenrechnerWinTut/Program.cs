@@ -90,8 +90,6 @@ namespace TaschenrechnerWinTut
                 Console.WriteLine("Bitte n eingeben wenn du nichtmehr willst, sonst geht noch eine Runde.");
                 if (Console.ReadLine() == "n")
                     endApp = true;
-
-                Console.WriteLine("\n");
             }
             return;
         }
