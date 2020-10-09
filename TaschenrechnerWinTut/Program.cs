@@ -1,41 +1,16 @@
 ﻿using System;
+using System.Diagnostics;
+using TaschenrechnerLibrary;
 
 
-namespace TaschenrechnerWinTut
+namespace TaschenrechnerProgram
 {
-    class Calculator
-    {
-        public static double DoOperation(double num1, double num2, string op)
-        {
-            double result = double.NaN;
-
-            switch (op)
-            {
-                case "a":
-                    result = num1 + num2;
-                    break;
-                case "s":
-                    result = num1 - num2;
-                    break;
-                case "m":
-                    result = num1 * num2;
-                    break;
-                case "d":
-                    if (num2 != 0)
-                        result = num1 / num2;
-                    break;
-                default:
-                    break;
-            }
-            return result;
-        }
-    }
-
     class Program
     {
         static void Main()
         {
             bool endApp = false;
+            Calculator calculator = new Calculator();
             while (!endApp)
             {
                 string numInput1 = "";
@@ -60,7 +35,7 @@ namespace TaschenrechnerWinTut
                 double cleanNum2 = 0;
                 while (!double.TryParse(numInput2, out cleanNum2))
                 {
-                    Console.WriteLine("Ungültig. Bitte einezahl eingeben: ");
+                    Console.WriteLine("Ungültig. Bitte eine Zahl eingeben: ");
                     numInput2 = Console.ReadLine();
                 }
 
@@ -74,7 +49,7 @@ namespace TaschenrechnerWinTut
 
                 try
                 {
-                    result = Calculator.DoOperation(cleanNum1, cleanNum2, op);
+                    result = calculator.DoOperation(cleanNum1, cleanNum2, op);
                     if (double.IsNaN(result))
                     {
                         Console.WriteLine("Des hat jetzt nicht so gut geklappt.");
@@ -89,7 +64,10 @@ namespace TaschenrechnerWinTut
 
                 Console.WriteLine("Bitte n eingeben wenn du nichtmehr willst, sonst geht noch eine Runde.");
                 if (Console.ReadLine() == "n")
+                {
+                    Trace.WriteLine("End Calculator Log");
                     endApp = true;
+                }
             }
             return;
         }
